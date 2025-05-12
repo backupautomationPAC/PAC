@@ -223,8 +223,17 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   /* ---- header clicks ---- */
-  function bindHeaderClicks() {
+function bindHeaderClicks() {
     document.querySelectorAll("th[data-col]").forEach(th => {
       th.addEventListener("click", () => {
         const col = th.dataset.col;
-        if (sort
+        if (sortCol === col) sortDir = sortDir === "asc" ? "desc" : "asc";
+        else { sortCol = col; sortDir = "asc"; }
+        applyFilters();
+      });
+    });
+  }
+
+  // Start the application
+  init();
+});
